@@ -23,3 +23,10 @@ Route::post('/login',[UserController::class,'login'])->name('login');
 Route::get('/', [ProductController::class,'index']);
 Route::get('detail/{id}',[ProductController::class,'detail']);
 Route::post('search',[ProductController::class,'search']);
+Route::post('addToCart',[ProductController::class,'addToCart'])->name('addToCart');
+Route::get('logout',function(){
+    if(session()->has('user')){
+        session()->forget('user');
+        return redirect()->back();
+    }
+})->name('logout');
